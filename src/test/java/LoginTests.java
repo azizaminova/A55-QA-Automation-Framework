@@ -1,3 +1,4 @@
+import Pages.HomePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -47,7 +48,21 @@ public class LoginTests extends BaseTest {
         //Assertion (expected vs. actual)
         WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
         //Quit Browser
-        driver.quit();
+        //driver.quit();
+        Assert.assertTrue(avatarIcon.isDisplayed());
+    }
+
+    //Login with Valid email Test using the PAGE OBJECT MODEL (POM)
+    @Test
+    public void loginValidEmailValidPasswordTest() {
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+
+        loginPage.provideEmail("demo@class.com");
+        loginPage.providePassword("te$t$tudent");
+        loginPage.clickSubmit();
+        Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
+
     }
 
 
