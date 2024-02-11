@@ -44,14 +44,14 @@ public class HomeTest extends BaseTest{
         provideEmail("demo@class.com");
         provideEmail("te$t$tudent");
         logintoKoel();
-        Thread.sleep(2000);
+        //Thread.sleep(2000);
         //double click playList
-        doubleClickPlaylist();
+        //doubleClickPlaylist();
         Thread.sleep(2000);
         //enter new name
         enterNewName();
         //assertion
-        Assert.assertEquals(getPlaylistDetails().contains(String.valueOf(countSongs())));
+        Assert.assertEquals(getRenamePlaylistSuccessMsg()updatedPlaylistSuccessmsg().contains(String.valueOf(countSongs())));
 
     }
     public String getRenamePlaylistSuccessMsg() {
