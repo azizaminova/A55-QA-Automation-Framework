@@ -1,3 +1,4 @@
+import Pages.HomePage;
 import org.asynchttpclient.util.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -41,9 +42,11 @@ public class HomeTest extends BaseTest{
     public void renamePlayList() throws InterruptedException {
         String newPlaylistName = "Sample Edited Playlist";
         String updatedPlaylistSuccessMsg = "Update playlist \"Sample Edited Playlist\"";
-        provideEmail("demo@class.com");
-        provideEmail("te$t$tudent");
-        logintoKoel();
+
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+        
+        loginPage.login();
         //Thread.sleep(2000);
         //double click playList
         //doubleClickPlaylist();
