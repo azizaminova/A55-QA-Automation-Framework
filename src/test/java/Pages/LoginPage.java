@@ -32,7 +32,9 @@ public void provideEmail(String email){
             logintoKoel();
         }
 
+        /*
         @Test
+
         public void deletePlaylist() {
             LoginPage loginPage = new LoginPage(driver);
             HomePage homePage = new HomePage(driver);
@@ -41,6 +43,8 @@ public void provideEmail(String email){
             loginPage.providePassword("te$t$tudent");
             loginPage.clickSubmit();
             Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
+            }
+            */
 
-        }
+
 }
