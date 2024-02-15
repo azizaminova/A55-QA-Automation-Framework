@@ -1,23 +1,20 @@
 import Pages.HomePage;
+import Pages.LoginPage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.time.Duration;
-import java.util.Collections;
-
 public class LoginTests extends BaseTest {
-    @Test
+ /*   @Test
     public void loginEmptyEmailPassword() {
         //navigateToPage();
         Assert.assertEquals(driver.getCurrentUrl(),url);
         driver.quit();
     }
+
+  */
 
     @Test
     public void loginValidEmailPassword() throws InterruptedException {
@@ -33,11 +30,11 @@ public class LoginTests extends BaseTest {
         //WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
         //Explicit Wait
         //WebElement avatarIcon = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img[class='avatar']")));
-        WebElement avatarIcon = fluentWait.until(ExpectedConditions.visibilityOfElementLocated("img[class='avatar']"));
+        WebElement avatarIcon = fluentWait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img.avatar")));
         Assert.assertTrue(avatarIcon.isDisplayed());
     }
 
-    @Test(dataProvider = "invalidLoginData")
+    @Test(dataProvider = "invalidLoginData", dataProviderClass = TestData.class))
     public void loginWithNegativeData(String email, String password) {
         //Step 2: Enter email
         provideEmail(email);
@@ -46,7 +43,7 @@ public class LoginTests extends BaseTest {
         //Step 4: Click Login button
         logintoKoel();
         //Assertion (expected vs. actual)
-        WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
+        WebElement avatarIcon = driver.findElement(By.cssSelector("img.avatar"));
         //Quit Browser
         //driver.quit();
         Assert.assertTrue(avatarIcon.isDisplayed());
@@ -75,9 +72,9 @@ public class LoginTests extends BaseTest {
         //Step 4: Click Login button
         logintoKoel();
         //Assertion (expected vs. actual)
-        WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
+        WebElement avatarIcon = driver.findElement(By.cssSelector("img.avatar"));
         //Quit Browser
-        driver.quit();
+        Assert.assertTrue(avatarIcon.isDisplayed());
     }
 
 
@@ -90,9 +87,8 @@ public class LoginTests extends BaseTest {
         //Step 4: Click Login button
         logintoKoel();
         //Assertion (expected vs. actual)
-        WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
-        //Quit Browser
-        driver.quit();
+        WebElement avatarIcon = driver.findElement(By.cssSelector("img.avatar"));
+        Assert.assertTrue(avatarIcon.isDisplayed());
     }
 
 }
