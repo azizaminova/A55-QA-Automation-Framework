@@ -12,7 +12,6 @@ public class Homework22 extends BaseTest {
         provideEmail("demo@class.com");
         providePassword("te$t$tudent");
         logintoKoel();
-        //open Playlist
         openPlaylist();
         clickDeletePlaylistBtn();
         Assert.assertEquals(getDeletedPlayListMsg(),expectedPlayListDeleteMsg);
@@ -20,7 +19,7 @@ public class Homework22 extends BaseTest {
     }
 
     public Object getDeletedPlayListMsg() {
-        WebElement notificationMsg = driver.findElement(By.cssSelector(".btn-delete-playlist"));
+        WebElement notificationMsg = driver.findElement(By.cssSelector("div.success.show"));
         return notificationMsg.getText();
     }
 
@@ -32,5 +31,6 @@ public class Homework22 extends BaseTest {
     public void clickDeletePlaylistBtn() {
         WebElement deletePlaylist = driver.findElement(By.cssSelector(".btn-delete-playlist"));
         deletePlaylist.click();
+        Thread.sleep(2000);
     }
 }
