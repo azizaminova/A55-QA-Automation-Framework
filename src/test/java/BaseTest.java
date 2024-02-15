@@ -92,4 +92,8 @@ public class BaseTest {
         driver.get(url);
     }
 
+    public void chooseAllSongsList() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("li a.songs"))).click();
+    }
+
 }
