@@ -38,7 +38,9 @@ public class BaseTest {
 
 
     @BeforeSuite
-    static void setupClass() { WebDriverManager.chromedriver().setup();}
+    static void setupClass() {
+        WebDriverManager.chromedriver().setup();
+    }
 
     @BeforeMethod
     @Parameters ({"BaseURL"})
@@ -59,7 +61,8 @@ public class BaseTest {
     }
 
     @AfterMethod
-    public void closeBrowser() {driver.quit();
+    public void closeBrowser() {
+        driver.quit();
     }
 
     //Helper Methods
