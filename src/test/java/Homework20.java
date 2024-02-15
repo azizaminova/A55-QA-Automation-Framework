@@ -1,5 +1,7 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.Test;
 import org.testng.Assert;
 
@@ -24,12 +26,14 @@ public class Homework19 extends BaseTest {
     public void openPlaylist() {
         //WebElement playlistToOpen = driver.findElement(By.cssSelector(".playlist:nth-child(5)"));
         WebElement avatarIcon = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".playlist:nth-child(5)")));
+        Actions playlistToOpen;
         playlistToOpen.click();
     }
 
     public void clickDeletePlaylistBtn() {
         //WebElement deletePlaylist = driver.findElement(By.cssSelector(".btn-delete-playlist"));
         WebElement avatarIcon = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".btn-delete-playlist")));
+        Actions deletePlaylist;
         deletePlaylist.click();
     }
 
