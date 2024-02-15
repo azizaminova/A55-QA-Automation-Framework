@@ -14,7 +14,7 @@ public class HomeTest extends BaseTest{
     String newPlayListName = "Sample Edited Playlist";
 
     @Test
-    public void hoverOverPlayBtn() {
+    public void hoverOverPlayBtn() throws InterruptedException{
         //Login
         provideEmail("demo@class.com");
         provideEmail("te$t$tudent");
@@ -51,9 +51,10 @@ public class HomeTest extends BaseTest{
         //enter new name
         enterNewName();
         //assertion
-        Assert.assertEquals(getRenamePlaylistSuccessMsg()UpdatedPlaylistSuccessMsg().contains(String.valueOf(countSongs())));
+        Assert.assertTrue(getRenamePlaylistSuccessMsg().contains(updatedPlaylistSuccessMsg));
 
     }
+
     public String getRenamePlaylistSuccessMsg() {
         WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
         return notification.getText();
@@ -77,7 +78,7 @@ public class HomeTest extends BaseTest{
 
     public void displayAllSongs() {
         List<WebElement> songList = driver.findElements(By.cssSelector("section#playlistWrapper td.title"));
-        System.out.println("Number of Songs found: " +countSongs());
+        System.out.println("Number of Songs found: " + countSongs());
         for (WebElement e: songList) {
             System.out.println(e.getText());
         }
