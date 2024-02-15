@@ -51,7 +51,7 @@ public class HomeTest extends BaseTest{
         //enter new name
         enterNewName();
         //assertion
-        Assert.assertEquals(getRenamePlaylistSuccessMsg()updatedPlaylistSuccessmsg().contains(String.valueOf(countSongs())));
+        Assert.assertEquals(getRenamePlaylistSuccessMsg()UpdatedPlaylistSuccessMsg().contains(String.valueOf(countSongs())));
 
     }
     public String getRenamePlaylistSuccessMsg() {
