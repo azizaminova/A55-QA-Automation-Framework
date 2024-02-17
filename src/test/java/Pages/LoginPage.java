@@ -3,7 +3,7 @@ package Pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-/**
+/*
  * this class is using Selenium By abstract class to locate elements
  * login helper methods are using the By class for locators
  */
