@@ -34,7 +34,7 @@ public class LoginTests extends BaseTest {
         Assert.assertTrue(avatarIcon.isDisplayed());
     }
 
-    @Test(dataProvider = "invalidLoginData", dataProviderClass = TestData.class))
+    @Test(dataProvider = "invalidLoginData", dataProviderClass = TestData.class)
     public void loginWithNegativeData(String email, String password) {
         //Step 2: Enter email
         provideEmail(email);
