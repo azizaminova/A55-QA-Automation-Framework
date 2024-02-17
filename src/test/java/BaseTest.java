@@ -14,6 +14,7 @@ import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.*;
 import org.testng.annotations.*;
 
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.time.Duration;
 
@@ -74,7 +75,7 @@ public class BaseTest {
         navigateToPage(baseURL);
     }
 
-    public WebDriver pickBrowser(String browser) {
+    public WebDriver pickBrowser(String browser) throws MalformedURLException {
         DesiredCapabilities caps =  new DesiredCapabilities();
         String gridURL = "http://10.0.0.206:4444/";
         switch(browser) {
