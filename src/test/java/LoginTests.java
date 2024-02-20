@@ -52,8 +52,25 @@ public class LoginTests extends BaseTest {
     //Login with Valid email Test using the PAGE OBJECT MODEL (POM)
     @Test
     public void loginValidEmailValidPasswordTest() throws InterruptedException {
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
+
+        loginPage.provideEmail("demo@class.com");
+        Thread.sleep(2000);
+        loginPage.providePassword("te$t$tudent");
+        Thread.sleep(2000);
+        loginPage.clickSubmit();
+        Thread.sleep(2000);
+        Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
+    } catch(Exception e) {
+        System.out.println("Something went wrong" + e);
+        Assert.fail();
+    }
+
+    @Test
+    public void loginInValidEmailValidPasswordTest() throws InterruptedException {
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
 
         loginPage.provideEmail("demo@class.com");
         loginPage.providePassword("te$t$tudent");
