@@ -28,6 +28,12 @@ public class BaseTest {
 
     public Actions actions;
 
+    public static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
+
+    public static WebDriver getDriver() {
+        return threadDriver.get();
+    }
+
 
     //public String url = "https://qa.koel.app/";
 
@@ -62,16 +68,23 @@ public class BaseTest {
         //driver = new ChromeDriver(options);
         //driver = new FirefoxDriver();
         //driver = new SafariDriver();
-        driver = pickBrowser(System.getProperty("browser"));
-        System.out.println();
+
+        threadDriver.set(pickBrowser(System.getProperty("browser")));
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+        //driver = pickBrowser(System.getProperty("browser"));
+        //System.out.println();
+
         //Implicit Wait
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         //Explicit Wait
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         //Fluent Wait
-        fluentWait = new FluentWait<WebDriver>(driver).withTimeout(Duration.ofSeconds(5)).pollingEvery(Duration.ofSeconds(1));
+        fluentWait = new FluentWait<WebDriver>(getDriver())
+                .withTimeout(Duration.ofSeconds(5))
+                .pollingEvery(Duration.ofSeconds(1));
         driver.manage().window().maximize();
-        actions = new Actions(driver);
+        actions = new Actions(getDriver());
         navigateToPage(baseURL);
     }
 
@@ -105,14 +118,21 @@ public class BaseTest {
 
     }
 
-    @AfterMethod
+   /*
     public void closeBrowser() {
         driver.quit();
+    }
+    */
+
+    @AfterMethod
+    public void tearDown() {
+        threadDriver.get().close();
+        threadDriver.remove();
     }
 
     //Helper Methods
 
-    public void logintoKoel() {
+    public void loginToKoel() {
         //WebElement loginBtn = driver.findElement(By.cssSelector("button[type='submit']"));
          WebElement loginBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(("button[type='submit']")));
         loginBtn.click();
@@ -134,7 +154,7 @@ public class BaseTest {
     }
 
     public void navigateToPage(String url) {
-        driver.get(url);
+        getDriver().get(url);
     }
 
     public void chooseAllSongsList() {
