@@ -16,7 +16,9 @@ import org.testng.annotations.*;
 
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URL;
 import java.time.Duration;
+import java.util.HashMap;
 
 public class BaseTest {
 
@@ -109,6 +111,8 @@ public class BaseTest {
             case "grid-chrome":
                 caps.setCapability("browser", "chrome");
                 return driver = new RemoteWebDriver(URI.create(gridURL).toURL(),caps);
+            case: "cloud":
+                return lambdaTest();
             default:
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
@@ -123,6 +127,43 @@ public class BaseTest {
         driver.quit();
     }
     */
+
+
+    public WebDriver lambdaTest () throws MalformedURLException {
+        String hubUrl = "https://hub.lambdatest.com/wd/hub";
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+
+       /*
+        String hub = "@gub.lambdatest.com/wd/hub";
+        String userName= "aziza.aminova";
+        String authKey = "dk3J1X44X8jFHB17ABrj0stZwQ1OGhzM7Qe7UrjYdhydbJ3svC";
+
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("platform", "Windows 10");
+        capabilities.setCapability("browserName", "Chrome");
+        capabilities.setCapability("version", "122.0");
+        capabilities.setCapability("resolution","2024x768");
+        capabilities.setCapability("build", "TestNG with Java");
+        capabilities.setCapability("name", BaseTest.class.getName());
+        capabilities.setCapability("plagin", "java-testNG");
+        */
+
+        ChromeOptions browserOptions = new ChromeOptions();
+        browserOptions.setPlatformName("Windows 10");
+        browserOptions.setBrowserVersion("122.0");
+        HashMap<String, Object> ltOptions = new HashMap<String, Object>();
+        ltOptions.put("username", "aziza.aminova");
+        ltOptions.put("accessKey", "dk3J1X44X8jFHB17ABrj0stZwQ1OGhzM7Qe7UrjYdhydbJ3svC");
+        ltOptions.put("build", "Selenium 4");
+        ltOptions.put("platformName", "Windows 10");
+        ltOptions.put("seCdp", true);
+        ltOptions.put("project", "Untitled");
+        ltOptions.put("selenium_version", "4.0.0");
+        ltOptions.put("w3c", true);
+        browserOptions.setCapability("LT:Options", ltOptions);
+        //return new RemoteWebDriver(new URL("https://"+userName+":"authKey + hub), capabilities);
+        return new RemoteWebDriver(new URL(hubUrl), capabilities);
+    }
 
     @AfterMethod
     public void tearDown() {
